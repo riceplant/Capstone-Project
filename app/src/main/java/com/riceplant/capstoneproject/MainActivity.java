@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Popular Games"));
-        tabLayout.addTab(tabLayout.newTab().setText("My Library"));
-        tabLayout.addTab(tabLayout.newTab().setText("Currently Playing"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.popular_games));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.my_library));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.currently_playing));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
