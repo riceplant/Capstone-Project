@@ -16,6 +16,12 @@ public class Game {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("popularity")
+    @Expose
+    private Double popularity;
+    @SerializedName("summary")
+    @Expose
+    private String summary;
     @SerializedName("genres")
     @Expose
     private List<Genre> genres = null;
@@ -28,6 +34,9 @@ public class Game {
     @SerializedName("release_dates")
     @Expose
     private List<ReleaseDate> releaseDates = null;
+    @SerializedName("videos")
+    @Expose
+    private List<Video> videos = null;
 
     public Integer getId() {
         return id;
@@ -51,6 +60,22 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public List<Genre> getGenres() {
@@ -83,6 +108,14 @@ public class Game {
 
     public void setReleaseDates(List<ReleaseDate> releaseDates) {
         this.releaseDates = releaseDates;
+    }
+
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
     }
 
 }
