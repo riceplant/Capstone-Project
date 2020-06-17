@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PopularGamesFragment extends Fragment {
+public class PopularGamesFragment extends Fragment implements GameAdapter.GameAdapterOnClickHandler {
     private RecyclerView mRecyclerView;
     private TextView mErrorTextMessage;
 
@@ -60,7 +60,7 @@ public class PopularGamesFragment extends Fragment {
     }
 
     private void generateDataList(ArrayList<Game> gameList) {
-        mGameAdapter = new GameAdapter(getActivity(), gameList);
+        mGameAdapter = new GameAdapter(gameList, this);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -68,4 +68,8 @@ public class PopularGamesFragment extends Fragment {
         mRecyclerView.setAdapter(mGameAdapter);
     }
 
+    @Override
+    public void onClick(int adapterPosition) {
+        Toast.makeText(getContext(), "click", Toast.LENGTH_LONG).show();
+    }
 }

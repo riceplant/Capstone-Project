@@ -19,19 +19,30 @@ import java.util.ArrayList;
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameAdapterViewHolder> {
 
     private ArrayList<Game> mGameData;
-    private Context mContext;
+    private final GameAdapterOnClickHandler mClickHandler;
 
-    public GameAdapter(Context context, ArrayList<Game> gameData) {
-        mContext = context;
+    public GameAdapter(ArrayList<Game> gameData, GameAdapterOnClickHandler clickHandler) {
         mGameData = gameData;
+        mClickHandler = clickHandler;
     }
 
-    public class GameAdapterViewHolder extends RecyclerView.ViewHolder {
+    public interface GameAdapterOnClickHandler {
+        void onClick(int adapterPosition);
+    }
+
+    public class GameAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mGameCover;
 
         public GameAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             mGameCover = itemView.findViewById(R.id.game_cover_image);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            mClickHandler.onClick(adapterPosition);
         }
     }
 
