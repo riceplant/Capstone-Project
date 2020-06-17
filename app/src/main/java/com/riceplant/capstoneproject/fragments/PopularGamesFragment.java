@@ -31,9 +31,11 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
     private TextView mErrorTextMessage;
 
     private GameAdapter mGameAdapter;
+    private ArrayList<Game> mGames;
 
     public static final String FIELDS = "name, platforms.name, cover, cover.url, cover.image_id, rating, release_dates.human, genres.name, summary, popularity, time_to_beat, videos.name, videos.video_id;";
     public static final String POPULARITY_SORTING = "sort popularity desc;";
+    public static final String LIMIT = "100;";
 
     @Nullable
     @Override
@@ -41,12 +43,13 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
         View view = inflater.inflate(R.layout.fragment_popular_games, container, false);
 
         GetDataService service = GameInstance.getGameInstance().create(GetDataService.class);
-        Call<ArrayList<Game>> call = service.getAllGames(FIELDS + POPULARITY_SORTING);
+        Call<ArrayList<Game>> call = service.getAllGames(FIELDS + POPULARITY_SORTING + LIMIT);
         call.enqueue(new Callback<ArrayList<Game>>() {
             @Override
             public void onResponse(Call<ArrayList<Game>> call, Response<ArrayList<Game>> response) {
                 mRecyclerView = view.findViewById(R.id.recycler_view);
-                generateDataList(response.body());
+                mGames = response.body();
+                generateDataList(mGames);
             }
 
             @Override
@@ -70,6 +73,6 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
 
     @Override
     public void onClick(int adapterPosition) {
-        Toast.makeText(getContext(), "click", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), mGames.get(adapterPosition).getName(), Toast.LENGTH_LONG).show();
     }
 }
