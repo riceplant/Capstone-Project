@@ -3,4 +3,5 @@
     <string name="popular_games">Popular Games</string>
     <string name="my_library">My Library</string>
     <string name="currently_playing">Currently Playing</string>
+    <string name="error_message">An error has occured. Please try again later!</string>
 </resources>
