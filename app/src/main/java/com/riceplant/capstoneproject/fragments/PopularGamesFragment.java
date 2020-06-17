@@ -1,5 +1,6 @@
 package com.riceplant.capstoneproject.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.riceplant.capstoneproject.network.GetDataService;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +37,7 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
 
     public static final String FIELDS = "name, platforms.name, cover, cover.url, cover.image_id, rating, release_dates.human, genres.name, summary, popularity, time_to_beat, videos.name, videos.video_id;";
     public static final String POPULARITY_SORTING = "sort popularity desc;";
-    public static final String LIMIT = "100;";
+    public static final String LIMIT = "limit 100;";
 
     @Nullable
     @Override
@@ -73,6 +75,6 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
 
     @Override
     public void onClick(int adapterPosition) {
-        Toast.makeText(getContext(), mGames.get(adapterPosition).getName(), Toast.LENGTH_LONG).show();
+        Context context = getActivity();
     }
 }
