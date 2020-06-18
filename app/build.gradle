@@ -24,7 +24,6 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-
 }
 
 dependencies {
@@ -44,10 +43,6 @@ dependencies {
 
     // Logging okhttp
     implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
-
-    // Butter Knife
-    implementation 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'

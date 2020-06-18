@@ -1,12 +1,12 @@
 package com.riceplant.capstoneproject.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.riceplant.capstoneproject.GameDetailsActivity;
 import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.adapter.GameAdapter;
 import com.riceplant.capstoneproject.data.Game;
@@ -21,9 +22,7 @@ import com.riceplant.capstoneproject.network.GameInstance;
 import com.riceplant.capstoneproject.network.GetDataService;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,5 +75,10 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
     @Override
     public void onClick(int adapterPosition) {
         Context context = getActivity();
+        Class detailClass = GameDetailsActivity.class;
+        GameDetailsActivity.mGame = mGames.get(adapterPosition);
+
+        Intent detailIntent = new Intent(context, detailClass);
+        startActivity(detailIntent);
     }
 }

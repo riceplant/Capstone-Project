@@ -62,13 +62,13 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameAdapterVie
         final String IMAGE_URL = "https://images.igdb.com/igdb/image/upload/t_720p/";
         final String IMAGE_FORMAT = ".jpg";
         Cover cover = mGameData.get(position).getCover();
-        String currentGame = null;
+        String coverURL = null;
         String currentGameCoverImageId = null;
         if (cover != null)
             currentGameCoverImageId = cover.getImageId();
-            currentGame = IMAGE_URL + currentGameCoverImageId + IMAGE_FORMAT;
+            coverURL = IMAGE_URL + currentGameCoverImageId + IMAGE_FORMAT;
         Picasso.get()
-                .load(currentGame)
+                .load(coverURL)
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.image_not_found)
                 .into(holder.mGameCover);
