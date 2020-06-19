@@ -7,12 +7,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.riceplant.capstoneproject.adapter.VideoAdapter;
 import com.riceplant.capstoneproject.data.Cover;
 import com.riceplant.capstoneproject.data.Game;
 import com.riceplant.capstoneproject.data.Genre;
 import com.riceplant.capstoneproject.data.Platform;
 import com.riceplant.capstoneproject.data.ReleaseDate;
+import com.riceplant.capstoneproject.data.Video;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -29,6 +33,7 @@ public class GameDetailsActivity extends AppCompatActivity {
     private List<Genre> gameGenre;
     private List<Platform> gamePlatform;
     private String gameSummary;
+    private List<Video> gameVideo;
 
     public static Game mGame;
     private TextView title;
@@ -38,6 +43,9 @@ public class GameDetailsActivity extends AppCompatActivity {
     private TextView platform;
     private TextView summary;
     private ImageView gameCover;
+
+    private VideoAdapter mVideoAdapter;
+    private RecyclerView mVideoRecyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +58,7 @@ public class GameDetailsActivity extends AppCompatActivity {
         gameGenre = mGame.getGenres();
         gamePlatform = mGame.getPlatforms();
         gameSummary = mGame.getSummary();
+        gameVideo = mGame.getVideos();
 
         Toolbar mToolbar = findViewById(R.id.toolbar_details);
         setSupportActionBar(mToolbar);
@@ -79,8 +88,13 @@ public class GameDetailsActivity extends AppCompatActivity {
         }
 
         if (gameGenre != null) {
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < gameGenre.size(); i++) {
-                genre.setText(gameGenre.get(i).getName());
+                sb.append(gameGenre.get(i).getName());
+                if (i < gameGenre.size() - 1) {
+                    sb.append(", ");
+                }
+                genre.setText(sb.toString());
             }
         } else {
             genre.setText("No Genre Available");
@@ -117,5 +131,16 @@ public class GameDetailsActivity extends AppCompatActivity {
                 .error(R.drawable.image_not_found)
                 .into(gameCover);
 
+        loadVideos(gameVideo);
+    }
+
+    private void loadVideos(List<Video> videoList) {
+        mVideoAdapter = new VideoAdapter(videoList, GameDetailsActivity.this);
+        mVideoRecyclerView = findViewById(R.id.recycler_view_videos);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mVideoRecyclerView.setLayoutManager(layoutManager);
+        mVideoRecyclerView.setHasFixedSize(true);
+        mVideoRecyclerView.setAdapter(mVideoAdapter);
     }
 }

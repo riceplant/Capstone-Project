@@ -164,7 +164,7 @@
                 android:text="@string/trailer_details" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_trailer"
+                android:id="@+id/recycler_view_videos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp" />
