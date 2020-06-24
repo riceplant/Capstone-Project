@@ -12,4 +12,8 @@
     <string name="reviews_details">Reviews</string>
     <string name="genre_details">Genre:</string>
     <string name="platforms_details">Platforms:</string>
+
+    <string name="app_label">CapStone Project</string>
+    <string name="search_hint">Search Game</string>
+    <string name="search_title">Search</string>
 </resources>
