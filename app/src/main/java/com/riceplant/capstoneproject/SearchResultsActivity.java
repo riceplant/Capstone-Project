@@ -4,6 +4,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import retrofit2.Response;
 public class SearchResultsActivity extends AppCompatActivity implements GameAdapter.GameAdapterOnClickHandler{
     private RecyclerView mRecyclerView;
     private TextView mErrorTextMessage;
+    private ProgressBar mProgressBar;
 
     private GameAdapter mGameAdapter;
     private ArrayList<Game> mGames;
@@ -44,6 +47,8 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         handleIntent(getIntent());
 
+        mProgressBar = findViewById(R.id.search_progress_bar);
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     private void handleIntent(Intent intent) {
@@ -55,10 +60,11 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
             call.enqueue(new Callback<ArrayList<Game>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Game>> call, Response<ArrayList<Game>> response) {
-                    mRecyclerView = findViewById(R.id.recycler_view);
-                    mGames = response.body();
-                    getSupportActionBar().setTitle(query);
-                    generateDataList(mGames);
+                    if (response.isSuccessful()) {
+                        mGames = response.body();
+                        getSupportActionBar().setTitle(query);
+                        generateDataList(mGames);
+                    }
                 }
 
                 @Override
@@ -71,9 +77,10 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
     }
 
     private void generateDataList(ArrayList<Game> gameList) {
+        mProgressBar.setVisibility(View.INVISIBLE);
         mGameAdapter = new GameAdapter(gameList, SearchResultsActivity.this);
 
-        mRecyclerView = findViewById(R.id.search_results_list_view);
+        mRecyclerView = findViewById(R.id.search_results_recycler_view);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(SearchResultsActivity.this, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
