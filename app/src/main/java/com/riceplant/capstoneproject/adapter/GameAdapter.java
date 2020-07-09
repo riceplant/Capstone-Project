@@ -15,6 +15,7 @@ import com.riceplant.capstoneproject.data.Game;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameAdapterViewHolder> {
 
@@ -72,6 +73,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameAdapterVie
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.image_not_found)
                 .into(holder.mGameCover);
+    }
+
+    public void setGameData(ArrayList<Game> gameData) {
+        mGameData = gameData;
+        notifyDataSetChanged();
     }
 
     @Override

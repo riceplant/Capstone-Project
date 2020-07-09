@@ -1,6 +1,8 @@
-package com.riceplant.capstoneproject;
+package com.riceplant.capstoneproject.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.adapter.VideoAdapter;
 import com.riceplant.capstoneproject.data.Cover;
 import com.riceplant.capstoneproject.data.Game;
@@ -17,6 +20,9 @@ import com.riceplant.capstoneproject.data.Genre;
 import com.riceplant.capstoneproject.data.Platform;
 import com.riceplant.capstoneproject.data.ReleaseDate;
 import com.riceplant.capstoneproject.data.Video;
+import com.riceplant.capstoneproject.room.AppExecutors;
+import com.riceplant.capstoneproject.room.GameRoomDatabase;
+import com.riceplant.capstoneproject.room.MyGame;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -43,6 +49,10 @@ public class GameDetailsActivity extends AppCompatActivity {
     private TextView platform;
     private TextView summary;
     private ImageView gameCover;
+    private Button addToLibraryButton;
+
+    private GameRoomDatabase mDb;
+    private Boolean mIsInLibrary = false;
 
     private VideoAdapter mVideoAdapter;
     private RecyclerView mVideoRecyclerView;
@@ -73,6 +83,51 @@ public class GameDetailsActivity extends AppCompatActivity {
         genre = findViewById(R.id.genre_details);
         platform = findViewById(R.id.platform_details);
         summary = findViewById(R.id.synopsis_details);
+        addToLibraryButton = findViewById(R.id.favourite_button_details);
+
+        mDb = GameRoomDatabase.getInstance(getApplicationContext());
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                final MyGame myGame = mDb.gameDao().loadGameById(Integer.parseInt(String.valueOf(mGame.getId())));
+                addGameToLibrary((myGame != null) ? true : false);
+            }
+        });
+
+        addToLibraryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final MyGame game = new MyGame(
+                        mGame.getId(),
+                        mGame.getCover(),
+                        mGame.getName(),
+                        mGame.getPopularity(),
+                        mGame.getSummary(),
+                        mGame.getGenres(),
+                        mGame.getPlatforms(),
+                        mGame.getRating(),
+                        mGame.getReleaseDates(),
+                        mGame.getVideos()
+                );
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mIsInLibrary) {
+                            mDb.gameDao().deleteGame(game);
+                        } else {
+                            mDb.gameDao().insertGame(game);
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                addGameToLibrary(!mIsInLibrary);
+                            }
+                        });
+                    }
+                });
+            }
+        });
 
         title.setText(gameName);
         if (gameSummary != null) {
@@ -142,5 +197,15 @@ public class GameDetailsActivity extends AppCompatActivity {
         mVideoRecyclerView.setLayoutManager(layoutManager);
         mVideoRecyclerView.setHasFixedSize(true);
         mVideoRecyclerView.setAdapter(mVideoAdapter);
+    }
+
+    private void addGameToLibrary(Boolean isInLibrary) {
+        if (isInLibrary) {
+            mIsInLibrary = true;
+            addToLibraryButton.setText("Remove from Library");
+        } else {
+            mIsInLibrary = false;
+            addToLibraryButton.setText("Add to Library");
+        }
     }
 }

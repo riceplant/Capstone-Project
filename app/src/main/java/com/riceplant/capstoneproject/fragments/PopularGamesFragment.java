@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.riceplant.capstoneproject.GameDetailsActivity;
+import com.riceplant.capstoneproject.activities.GameDetailsActivity;
 import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.adapter.GameAdapter;
 import com.riceplant.capstoneproject.data.Game;
@@ -30,6 +31,7 @@ import retrofit2.Response;
 public class PopularGamesFragment extends Fragment implements GameAdapter.GameAdapterOnClickHandler {
     private RecyclerView mRecyclerView;
     private TextView mErrorTextMessage;
+    private ProgressBar mProgressBar;
 
     private GameAdapter mGameAdapter;
     private ArrayList<Game> mGames;
@@ -42,15 +44,19 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popular_games, container, false);
+        mRecyclerView = view.findViewById(R.id.recycler_view);
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.VISIBLE);
 
         GetDataService service = GameInstance.getGameInstance().create(GetDataService.class);
         Call<ArrayList<Game>> call = service.getAllGames(FIELDS + POPULARITY_SORTING + LIMIT);
         call.enqueue(new Callback<ArrayList<Game>>() {
             @Override
             public void onResponse(Call<ArrayList<Game>> call, Response<ArrayList<Game>> response) {
-                mRecyclerView = view.findViewById(R.id.recycler_view);
-                mGames = response.body();
-                generateDataList(mGames);
+                if (response.isSuccessful()) {
+                    mGames = response.body();
+                    generateDataList(mGames);
+                }
             }
 
             @Override
@@ -64,6 +70,7 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
     }
 
     private void generateDataList(ArrayList<Game> gameList) {
+        mProgressBar.setVisibility(View.INVISIBLE);
         mGameAdapter = new GameAdapter(gameList, this);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -71,6 +78,7 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mGameAdapter);
     }
+
 
     @Override
     public void onClick(int adapterPosition) {
