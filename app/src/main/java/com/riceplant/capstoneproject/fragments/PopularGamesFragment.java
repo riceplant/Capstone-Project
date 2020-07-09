@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.riceplant.capstoneproject.GameDetailsActivity;
+import com.riceplant.capstoneproject.activities.GameDetailsActivity;
 import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.adapter.GameAdapter;
 import com.riceplant.capstoneproject.data.Game;

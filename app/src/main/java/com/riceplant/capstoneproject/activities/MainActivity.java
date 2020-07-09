@@ -1,4 +1,4 @@
-package com.riceplant.capstoneproject;
+package com.riceplant.capstoneproject.activities;
 
 import android.app.SearchManager;
 import android.content.ComponentName;
@@ -14,6 +14,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.riceplant.capstoneproject.R;
 
 import static com.riceplant.capstoneproject.R.string.search_hint;
 

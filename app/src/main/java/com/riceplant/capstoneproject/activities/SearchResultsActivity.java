@@ -1,4 +1,4 @@
-package com.riceplant.capstoneproject;
+package com.riceplant.capstoneproject.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.adapter.GameAdapter;
 import com.riceplant.capstoneproject.data.Game;
 import com.riceplant.capstoneproject.network.GameInstance;
