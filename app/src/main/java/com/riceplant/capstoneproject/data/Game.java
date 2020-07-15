@@ -41,6 +41,33 @@ public class Game implements Parcelable {
     @Expose
     private List<Video> videos = null;
 
+    public Game() {
+    }
+
+    public Game(
+            Integer id,
+            Cover cover,
+            String name,
+            Double popularity,
+            String summary,
+            List<Genre> genres,
+            List<Platform> platforms,
+            Double rating,
+            List<ReleaseDate> releaseDates,
+            List<Video> videos
+            ) {
+        this.id = id;
+        this.cover = cover;
+        this.name = name;
+        this.popularity = popularity;
+        this.summary = summary;
+        this.genres = genres;
+        this.platforms = platforms;
+        this.rating = rating;
+        this.releaseDates = releaseDates;
+        this.videos = videos;
+    }
+
     protected Game(Parcel in) {
         if (in.readByte() == 0) {
             id = null;
