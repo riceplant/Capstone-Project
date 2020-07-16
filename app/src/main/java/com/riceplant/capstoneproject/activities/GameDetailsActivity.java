@@ -25,6 +25,8 @@ import com.riceplant.capstoneproject.room.GameRoomDatabase;
 import com.riceplant.capstoneproject.room.MyGame;
 import com.squareup.picasso.Picasso;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class GameDetailsActivity extends AppCompatActivity {
@@ -169,7 +171,9 @@ public class GameDetailsActivity extends AppCompatActivity {
         }
 
         if (gameRating != null) {
-            rating.setText(gameRating.toString());
+            DecimalFormat df = new DecimalFormat("#");
+            String formattedRating = df.format(gameRating);
+            rating.setText(formattedRating);
         } else {
             rating.setText("No Rating available");
         }
@@ -179,7 +183,7 @@ public class GameDetailsActivity extends AppCompatActivity {
         String coverId = null;
         if (cover != null)
             coverId = mGame.getCover().getImageId();
-            coverUrl = IMAGE_URL + coverId + IMAGE_FORMAT;
+        coverUrl = IMAGE_URL + coverId + IMAGE_FORMAT;
 
         Picasso.get()
                 .load(coverUrl)

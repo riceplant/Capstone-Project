@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.activities.GameDetailsActivity;
@@ -41,6 +41,7 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popular_games, container, false);
         mRecyclerView = view.findViewById(R.id.recycler_view);
+        mErrorMessage = view.findViewById(R.id.popular_games_error_message);
         mProgressBar = view.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
 
@@ -52,7 +53,7 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
     }
 
     private void loadGamesLibrary() {
-        for (int i = 0; i <mGamesLibrary.size(); i++) {
+        for (int i = 0; i < mGamesLibrary.size(); i++) {
             Game game = new Game(
                     mGamesLibrary.get(i).getId(),
                     mGamesLibrary.get(i).getCover(),
