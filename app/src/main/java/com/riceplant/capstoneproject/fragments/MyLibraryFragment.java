@@ -48,7 +48,6 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
         mGamesLibrary = new ArrayList<>();
         mGames = new ArrayList<>();
         setUpViewModel();
-        loadGamesLibrary();
         return view;
     }
 
