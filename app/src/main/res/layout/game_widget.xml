@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/widget_margin">
 
     <ImageView
@@ -15,14 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/widget_image"
-        android:layout_margin="8dp" />
-
-    <TextView
-        android:id="@+id/widget_notes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/widget_image"
-        android:layout_below="@id/widget_name"
-        android:padding="8dp" />
+        android:layout_margin="8dp"
+        tools:text="Game Name"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
