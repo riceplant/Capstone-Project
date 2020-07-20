@@ -16,7 +16,8 @@ import java.util.List;
 public class Converters {
     @TypeConverter
     public static Cover toCover(String value) {
-        return value == null ? null : new Cover();
+        String imgID = value.substring(value.lastIndexOf("/")+1, value.lastIndexOf("."));
+        return value == null ? null : new Cover(imgID);
     }
 
     @TypeConverter
