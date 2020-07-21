@@ -16,7 +16,7 @@ import java.util.List;
 public class Converters {
     @TypeConverter
     public static Cover toCover(String value) {
-        String imgID = value.substring(value.lastIndexOf("/")+1, value.lastIndexOf("."));
+        String imgID = value.substring(value.lastIndexOf("/") + 1, value.lastIndexOf("."));
         return value == null ? null : new Cover(imgID);
     }
 
@@ -27,7 +27,8 @@ public class Converters {
 
     @TypeConverter
     public static List<Genre> toGenre(String value) {
-        Type listType = new TypeToken<List<Genre>>() {}.getType();
+        Type listType = new TypeToken<List<Genre>>() {
+        }.getType();
         List<Genre> genres = new Gson().fromJson(value, listType);
         return genres;
     }
@@ -41,7 +42,8 @@ public class Converters {
 
     @TypeConverter
     public static List<Platform> toPlatform(String value) {
-        Type listType = new TypeToken<List<Platform>>() {}.getType();
+        Type listType = new TypeToken<List<Platform>>() {
+        }.getType();
         List<Platform> platforms = new Gson().fromJson(value, listType);
         return platforms;
     }
@@ -54,7 +56,8 @@ public class Converters {
 
     @TypeConverter
     public static List<Video> toVideo(String value) {
-        Type listType = new TypeToken<List<Video>>() {}.getType();
+        Type listType = new TypeToken<List<Video>>() {
+        }.getType();
         List<Video> videos = new Gson().fromJson(value, listType);
         return videos;
     }
@@ -67,7 +70,8 @@ public class Converters {
 
     @TypeConverter
     public static List<ReleaseDate> toReleaseDate(String value) {
-        Type listType = new TypeToken<List<ReleaseDate>>() {}.getType();
+        Type listType = new TypeToken<List<ReleaseDate>>() {
+        }.getType();
         List<ReleaseDate> releaseDates = new Gson().fromJson(value, listType);
         return releaseDates;
     }
