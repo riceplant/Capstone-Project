@@ -62,6 +62,7 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
             @Override
             public void onFailure(Call<ArrayList<Game>> call, Throwable t) {
                 mErrorTextMessage = view.findViewById(R.id.popular_games_error_message);
+                mErrorTextMessage.setVisibility(View.VISIBLE);
                 mErrorTextMessage.setText("Something went wrong. Try again!");
             }
         });

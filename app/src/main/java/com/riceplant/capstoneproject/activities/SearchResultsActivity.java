@@ -50,6 +50,8 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
 
         mProgressBar = findViewById(R.id.search_progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
+
+        mErrorTextMessage = findViewById(R.id.search_message);
     }
 
     private void handleIntent(Intent intent) {
@@ -63,14 +65,20 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
                 public void onResponse(Call<ArrayList<Game>> call, Response<ArrayList<Game>> response) {
                     if (response.isSuccessful()) {
                         mGames = response.body();
-                        getSupportActionBar().setTitle(query);
-                        generateDataList(mGames);
+                        if (mGames.size() > 0) {
+                            getSupportActionBar().setTitle(query);
+                            generateDataList(mGames);
+                        } else {
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            mErrorTextMessage.setVisibility(View.VISIBLE);
+                            mErrorTextMessage.setText("No Results");
+                        }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ArrayList<Game>> call, Throwable t) {
-                    mErrorTextMessage = findViewById(R.id.popular_games_error_message);
+                    mErrorTextMessage.setVisibility(View.VISIBLE);
                     mErrorTextMessage.setText("Something went wrong. Try again!");
                 }
             });
