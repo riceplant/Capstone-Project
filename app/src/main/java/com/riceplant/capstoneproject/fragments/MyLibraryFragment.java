@@ -53,6 +53,7 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
     }
 
     private void loadGamesLibrary() {
+        mGames.clear();
         for (int i = 0; i < mGamesLibrary.size(); i++) {
             Game game = new Game(
                     mGamesLibrary.get(i).getId(),
