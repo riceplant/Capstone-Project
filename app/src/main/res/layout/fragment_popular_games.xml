@@ -18,6 +18,7 @@
         android:padding="16dp"
         android:textSize="20sp"
         tools:text="@string/error_message"
+        android:layout_gravity="center"
         android:visibility="invisible"/>
 
     <ProgressBar

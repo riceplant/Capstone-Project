@@ -92,7 +92,7 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
                     mGamesLibrary.clear();
                     mGames.clear();
                     mErrorMessage.setVisibility(View.VISIBLE);
-                    mErrorMessage.setText("Nothing to show here");
+                    mErrorMessage.setText("Add some games to your library!");
                 }
                 loadGamesLibrary();
             }
