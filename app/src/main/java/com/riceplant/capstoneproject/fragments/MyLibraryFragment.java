@@ -47,6 +47,7 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
 
         mGamesLibrary = new ArrayList<>();
         mGames = new ArrayList<>();
+        loadGamesLibrary();
         setUpViewModel();
         return view;
     }
@@ -85,6 +86,9 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
                 if (myGames.size() > 0) {
                     mGamesLibrary.clear();
                     mGamesLibrary = (ArrayList<MyGame>) myGames;
+                } else if (myGames.size() == 0) {
+                    mGamesLibrary.clear();
+                    mGames.clear();
                 }
                 loadGamesLibrary();
             }
