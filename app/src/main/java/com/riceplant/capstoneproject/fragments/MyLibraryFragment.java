@@ -85,11 +85,14 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
             @Override
             public void onChanged(List<MyGame> myGames) {
                 if (myGames.size() > 0) {
+                    mErrorMessage.setVisibility(View.INVISIBLE);
                     mGamesLibrary.clear();
                     mGamesLibrary = (ArrayList<MyGame>) myGames;
                 } else if (myGames.size() == 0) {
                     mGamesLibrary.clear();
                     mGames.clear();
+                    mErrorMessage.setVisibility(View.VISIBLE);
+                    mErrorMessage.setText("Nothing to show here");
                 }
                 loadGamesLibrary();
             }
