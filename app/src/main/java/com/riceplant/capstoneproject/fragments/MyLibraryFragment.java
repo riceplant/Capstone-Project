@@ -47,11 +47,13 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
 
         mGamesLibrary = new ArrayList<>();
         mGames = new ArrayList<>();
+        loadGamesLibrary();
         setUpViewModel();
         return view;
     }
 
     private void loadGamesLibrary() {
+        mGames.clear();
         for (int i = 0; i < mGamesLibrary.size(); i++) {
             Game game = new Game(
                     mGamesLibrary.get(i).getId(),
@@ -83,8 +85,14 @@ public class MyLibraryFragment extends Fragment implements GameAdapter.GameAdapt
             @Override
             public void onChanged(List<MyGame> myGames) {
                 if (myGames.size() > 0) {
+                    mErrorMessage.setVisibility(View.INVISIBLE);
                     mGamesLibrary.clear();
                     mGamesLibrary = (ArrayList<MyGame>) myGames;
+                } else if (myGames.size() == 0) {
+                    mGamesLibrary.clear();
+                    mGames.clear();
+                    mErrorMessage.setVisibility(View.VISIBLE);
+                    mErrorMessage.setText("Add some games to your library!");
                 }
                 loadGamesLibrary();
             }

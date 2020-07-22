@@ -16,6 +16,10 @@ public class Cover {
     @Expose
     private String url;
 
+    public Cover(String imageId) {
+        this.imageId = imageId;
+    }
+
     public Integer getId() {
         return id;
     }

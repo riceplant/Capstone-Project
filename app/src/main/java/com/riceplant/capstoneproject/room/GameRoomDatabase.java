@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {MyGame.class}, version = 3, exportSchema = false)
+@Database(entities = {MyGame.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class GameRoomDatabase extends RoomDatabase {
     private static final String LOG_TAG = GameRoomDatabase.class.getSimpleName();
