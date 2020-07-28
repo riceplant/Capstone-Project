@@ -15,7 +15,6 @@ import com.riceplant.capstoneproject.data.Game;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameAdapterViewHolder> {
 
