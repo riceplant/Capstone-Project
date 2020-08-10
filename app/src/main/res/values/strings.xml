@@ -16,4 +16,6 @@
     <string name="app_label">CapStone Project</string>
     <string name="search_hint">Search Game</string>
     <string name="search_title">Search</string>
+    <string name="remove_library">Remove from Library</string>
+    <string name="add_library">Add to Library</string>
 </resources>
