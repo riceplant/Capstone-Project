@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_details"
@@ -18,7 +18,7 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,42 +44,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
-                    android:textStyle="bold"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="Game Title" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="30dp"
-                    android:textStyle="bold"
-                    android:text="@string/release_date_details" />
+                    android:focusable="true"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/release_date_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    tools:text="16/12/1990" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="30dp"
+                        android:text="@string/release_date_details"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="@string/rating_details" />
+                    <TextView
+                        android:id="@+id/release_date_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        tools:text="16/12/1990" />
 
-                <TextView
-                    android:id="@+id/rating_details"
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    tools:text="10" />
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rating_details"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/rating_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        tools:text="10" />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/favourite_button_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Add to Favourites"/>
+                    tools:text="Add to Favourites" />
 
             </LinearLayout>
 
@@ -89,21 +105,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingLeft="8dp"
                 android:text="@string/genre_details"
-                android:textStyle="bold"
-                android:paddingLeft="8dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/genre_details"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
-                tools:text="Shooter, RPG, etc."/>
+                tools:text="Shooter, RPG, etc." />
 
         </LinearLayout>
 
@@ -111,21 +128,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingLeft="8dp"
                 android:text="@string/platforms_details"
-                android:textStyle="bold"
-                android:paddingLeft="8dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/platform_details"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
-                tools:text="PS4, Switch, XBOX1, PC"/>
+                tools:text="PS4, Switch, XBOX1, PC" />
 
         </LinearLayout>
 
@@ -133,20 +151,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:focusable="true">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:paddingLeft="8dp"
-                android:text="@string/synopsis_details"/>
+                android:text="@string/synopsis_details"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/synopsis_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"/>
+                android:padding="8dp" />
 
         </LinearLayout>
 
@@ -159,9 +178,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:paddingLeft="8dp"
-                android:text="@string/trailer_details" />
+                android:text="@string/trailer_details"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_videos"

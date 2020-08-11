@@ -214,10 +214,12 @@ public class GameDetailsActivity extends AppCompatActivity {
     private void addGameToLibrary(Boolean isInLibrary) {
         if (isInLibrary) {
             mIsInLibrary = true;
-            addToLibraryButton.setText("Remove from Library");
+            addToLibraryButton.setText(R.string.remove_library);
+            addToLibraryButton.setContentDescription(getString(R.string.remove_library));
         } else {
             mIsInLibrary = false;
-            addToLibraryButton.setText("Add to Library");
+            addToLibraryButton.setText(R.string.add_library);
+            addToLibraryButton.setContentDescription(getString(R.string.add_library));
         }
     }
 }

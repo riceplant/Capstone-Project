@@ -72,6 +72,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameAdapterVie
                 .placeholder(R.drawable.image_loading)
                 .error(R.drawable.image_not_found)
                 .into(holder.mGameCover);
+        // for accessibility set content description of the cover to the name of the game
+        holder.mGameCover.setContentDescription(mGameData.get(position).getName());
+
     }
 
     public void setGameData(ArrayList<Game> gameData) {
