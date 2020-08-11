@@ -1,5 +1,6 @@
 package com.riceplant.capstoneproject.data;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -7,9 +8,13 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 
 import com.riceplant.capstoneproject.R;
+import com.riceplant.capstoneproject.activities.MainActivity;
+import com.riceplant.capstoneproject.adapter.PagerAdapter;
+import com.riceplant.capstoneproject.fragments.MyLibraryFragment;
 import com.riceplant.capstoneproject.room.GameDao;
 import com.riceplant.capstoneproject.room.GameRoomDatabase;
 import com.riceplant.capstoneproject.room.MyGame;
@@ -25,12 +30,13 @@ public class GameWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.game_widget);
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget(appWidgetId, views);
-        appWidgetManager.notifyAppWidgetViewDataChanged(R.id.app_name, appWidgetId);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.game_widget);
+        remoteViews.setOnClickPendingIntent(R.id.favoriteText, pendingIntent);
+
+        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
     }
 
     @Override

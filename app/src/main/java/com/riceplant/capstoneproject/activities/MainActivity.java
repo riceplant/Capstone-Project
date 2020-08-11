@@ -3,6 +3,7 @@ package com.riceplant.capstoneproject.activities;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,11 @@ import com.riceplant.capstoneproject.R;
 import static com.riceplant.capstoneproject.R.string.search_hint;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+
+    public static final String EXTRA_DEFAULT_FRAGMENT = "com.riceplant.capstoneproject.activities.EXTRA_DEFAULT_FRAGMENT";
+
+    public static final int FRAGMENT_POPULAR = 0;
+    public static final int FRAGMENT_LIBRARY = 1;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -38,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText(R.string.popular_games));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.my_library));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.currently_playing));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
@@ -54,6 +59,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = (String) extras.get("key");
+        }
     }
 
     @Override
