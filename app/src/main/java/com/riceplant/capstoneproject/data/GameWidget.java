@@ -31,6 +31,7 @@ public class GameWidget extends AppWidgetProvider {
                                 int appWidgetId) {
 
         Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(MainActivity.EXTRA_DEFAULT_FRAGMENT, MainActivity.FRAGMENT_LIBRARY);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.game_widget);
