@@ -1,24 +1,35 @@
 package com.riceplant.capstoneproject.activities;
 
+import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.riceplant.capstoneproject.R;
+import com.riceplant.capstoneproject.fragments.MyLibraryFragment;
+import com.riceplant.capstoneproject.fragments.PopularGamesFragment;
 
 import static com.riceplant.capstoneproject.R.string.search_hint;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+
+    public static final String EXTRA_DEFAULT_FRAGMENT = "com.riceplant.capstoneproject.activities.EXTRA_DEFAULT_FRAGMENT";
+
+    public static final int FRAGMENT_POPULAR = 0;
+    public static final int FRAGMENT_LIBRARY = 1;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -38,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText(R.string.popular_games));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.my_library));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.currently_playing));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
@@ -54,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            Intent i = getIntent();
+            int defaultView = i.getIntExtra(EXTRA_DEFAULT_FRAGMENT, FRAGMENT_LIBRARY);
+        }
     }
 
     @Override
