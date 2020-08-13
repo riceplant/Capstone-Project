@@ -18,4 +18,14 @@
     <string name="search_title">Search</string>
     <string name="remove_library">Remove from Library</string>
     <string name="add_library">Add to Library</string>
+    <string name="games_library">Games Library</string>
+    <string name="dots">.....................................................................</string>
+    <string name="no_summary">No Summary Available</string>
+    <string name="no_release_date">No Release Date available</string>
+    <string name="no_genre">No Genre Available</string>
+    <string name="no_platform">No Platform Available</string>
+    <string name="no_rating">No Rating available</string>
+    <string name="add_games">Add some games to your library!</string>
+    <string name="error_message_internet">Something went wrong. Try again!</string>
+    <string name="no_results">No Results</string>
 </resources>

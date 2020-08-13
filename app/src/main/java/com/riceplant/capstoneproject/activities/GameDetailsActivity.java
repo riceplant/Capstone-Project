@@ -1,5 +1,6 @@
 package com.riceplant.capstoneproject.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +68,7 @@ public class GameDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,13 +145,13 @@ public class GameDetailsActivity extends AppCompatActivity {
         if (gameSummary != null) {
             summary.setText(gameSummary);
         } else {
-            summary.setText("No Summary Available");
+            summary.setText(R.string.no_summary);
         }
 
         if (gameRelease != null) {
             releaseDate.setText(gameRelease.get(0).getHuman());
         } else {
-            releaseDate.setText("No Release Date available");
+            releaseDate.setText(R.string.no_release_date);
         }
 
         if (gameGenre != null) {
@@ -162,7 +164,7 @@ public class GameDetailsActivity extends AppCompatActivity {
                 genre.setText(sb.toString());
             }
         } else {
-            genre.setText("No Genre Available");
+            genre.setText(R.string.no_genre);
         }
 
         if (gamePlatform != null) {
@@ -175,7 +177,7 @@ public class GameDetailsActivity extends AppCompatActivity {
             }
             platform.setText(sb.toString());
         } else {
-            platform.setText("No Platform Available");
+            platform.setText(R.string.no_platform);
         }
 
         if (gameRating != null) {
@@ -183,7 +185,7 @@ public class GameDetailsActivity extends AppCompatActivity {
             String formattedRating = df.format(gameRating);
             rating.setText(formattedRating);
         } else {
-            rating.setText("No Rating available");
+            rating.setText(R.string.no_rating);
         }
 
         gameCover = findViewById(R.id.game_cover_image_details);

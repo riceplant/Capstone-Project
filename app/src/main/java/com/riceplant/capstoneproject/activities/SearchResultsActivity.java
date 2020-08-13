@@ -71,7 +71,7 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
                         } else {
                             mProgressBar.setVisibility(View.INVISIBLE);
                             mErrorTextMessage.setVisibility(View.VISIBLE);
-                            mErrorTextMessage.setText("No Results");
+                            mErrorTextMessage.setText(R.string.no_results);
                         }
                     }
                 }
@@ -79,7 +79,7 @@ public class SearchResultsActivity extends AppCompatActivity implements GameAdap
                 @Override
                 public void onFailure(Call<ArrayList<Game>> call, Throwable t) {
                     mErrorTextMessage.setVisibility(View.VISIBLE);
-                    mErrorTextMessage.setText("Something went wrong. Try again!");
+                    mErrorTextMessage.setText(R.string.error_message_internet);
                 }
             });
         }
