@@ -14,6 +14,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.tabs.TabLayout;
 import com.riceplant.capstoneproject.R;
 
@@ -25,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     public static final int FRAGMENT_POPULAR = 0;
     public static final int FRAGMENT_LIBRARY = 1;
+
+    private AdView mAdView;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -60,10 +67,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
 
-        if (savedInstanceState == null) {
-            Intent i = getIntent();
-            int defaultView = i.getIntExtra(EXTRA_DEFAULT_FRAGMENT, FRAGMENT_LIBRARY);
-        }
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     @Override
