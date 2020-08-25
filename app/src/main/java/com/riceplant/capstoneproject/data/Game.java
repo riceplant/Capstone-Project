@@ -44,6 +44,12 @@ public class Game implements Parcelable {
     public Game() {
     }
 
+    public Game(String name, Double rating, List<ReleaseDate> releaseDates) {
+        this.name = name;
+        this.rating = rating;
+        this.releaseDates = releaseDates;
+    }
+
     public Game(
             Integer id,
             Cover cover,
