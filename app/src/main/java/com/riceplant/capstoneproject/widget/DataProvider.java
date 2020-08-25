@@ -78,6 +78,14 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
     }
 
     private void initData() {
-
+        mGames.clear();
+        for (int i = 0; i < mGamesLibrary.size(); i++) {
+            Game game = new Game(
+                    mGamesLibrary.get(i).getName(),
+                    mGamesLibrary.get(i).getRating(),
+                    mGamesLibrary.get(i).getReleaseDate()
+            );
+            mGames.add(game);
+        }
     }
 }
