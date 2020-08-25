@@ -36,7 +36,7 @@ public class PopularGamesFragment extends Fragment implements GameAdapter.GameAd
     private GameAdapter mGameAdapter;
     private ArrayList<Game> mGames;
 
-    public static final String FIELDS = "name, platforms.name, cover, cover.url, cover.image_id, rating, release_dates.human, genres.name, summary, popularity, time_to_beat, videos.name, videos.video_id;";
+    public static final String FIELDS = "name, platforms.name, cover, cover.url, cover.image_id, rating, release_dates.human, genres.name, summary, popularity, time_to_beat, videos.name, videos.video_id; where themes != (42);";
     public static final String POPULARITY_SORTING = "sort popularity desc;";
     public static final String LIMIT = "limit 100;";
 
