@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import androidx.lifecycle.LiveData;
+
 import com.riceplant.capstoneproject.R;
 import com.riceplant.capstoneproject.data.Game;
 import com.riceplant.capstoneproject.room.GameDao;
+import com.riceplant.capstoneproject.room.GameRoomDatabase;
 import com.riceplant.capstoneproject.room.MyGame;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
 
@@ -22,6 +26,8 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
     public DataProvider(Context context, Intent intent) {
         mContext = context;
 
+        GameRoomDatabase db = null;
+        LiveData<List<MyGame>> database = db.gameDao().loadAllGames();
     }
 
     @Override
