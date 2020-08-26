@@ -51,7 +51,7 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
                 R.layout.game_widget_list);
         view.setTextViewText(R.id.game_name_widget, mGames.get(position).getName());
         // view.setTextViewText(R.id.game_rating_widget, mGames.get(position).getRating().toString());
-        view.setTextViewText(R.id.game_release_widget, mGames.get(position).getReleaseDates().get(0).getHuman());
+        // iew.setTextViewText(R.id.game_release_widget, mGames.get(position).getReleaseDates().get(0).getHuman());
         return view;
     }
 
