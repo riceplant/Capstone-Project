@@ -27,7 +27,6 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public void onCreate() {
-        initData();
     }
 
     @Override
