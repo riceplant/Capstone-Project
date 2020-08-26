@@ -18,7 +18,7 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
 
     private GameDao gameDao;
     private List<MyGame> mGamesLibrary;
-    private ArrayList<Game> mGames;
+    private ArrayList<Game> mGames = null;
     private Context mContext;
 
     public DataProvider(Context context, Intent intent) {
@@ -81,14 +81,18 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
         GameRoomDatabase db = GameRoomDatabase.getInstance(mContext);
         mGamesLibrary = db.gameDao().loadAllGamesSync();
 
-        mGames.clear();
+        if (mGames != null) {
+            mGames.clear();
+        }
         for (int i = 0; i < mGamesLibrary.size(); i++) {
             Game game = new Game(
                     mGamesLibrary.get(i).getName(),
                     mGamesLibrary.get(i).getRating(),
                     mGamesLibrary.get(i).getReleaseDate()
             );
-            mGames.add(game);
+            if (mGames != null) {
+                mGames.add(game);
+            }
         }
     }
 }
