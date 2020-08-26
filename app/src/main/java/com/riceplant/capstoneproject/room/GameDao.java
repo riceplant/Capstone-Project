@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -15,6 +16,10 @@ public interface GameDao {
 
     @Query("SELECT * FROM game ORDER BY mId")
     LiveData<List<MyGame>> loadAllGames();
+
+    // for widget only
+    @Query("SELECT * FROM game ORDER BY mId")
+    List<MyGame> loadAllGamesSync();
 
     @Insert
     void insertGame(MyGame myGame);
