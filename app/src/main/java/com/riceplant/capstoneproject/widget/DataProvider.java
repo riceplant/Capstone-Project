@@ -16,9 +16,8 @@ import java.util.List;
 
 public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
 
-    private GameDao gameDao;
     private List<MyGame> mGamesLibrary;
-    private ArrayList<Game> mGames = null;
+    private ArrayList<Game> mGames = new ArrayList<>();
     private Context mContext;
 
     public DataProvider(Context context, Intent intent) {
@@ -32,6 +31,7 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public void onDataSetChanged() {
         initData();
+        loadGamesLibrary();
     }
 
     @Override
@@ -80,19 +80,24 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
     private void initData() {
         GameRoomDatabase db = GameRoomDatabase.getInstance(mContext);
         mGamesLibrary = db.gameDao().loadAllGamesSync();
+    }
 
-        if (mGames != null) {
-            mGames.clear();
-        }
+    private void loadGamesLibrary() {
+        mGames.clear();
         for (int i = 0; i < mGamesLibrary.size(); i++) {
             Game game = new Game(
+                    mGamesLibrary.get(i).getId(),
+                    mGamesLibrary.get(i).getCover(),
                     mGamesLibrary.get(i).getName(),
+                    mGamesLibrary.get(i).getPopularity(),
+                    mGamesLibrary.get(i).getSummary(),
+                    mGamesLibrary.get(i).getGenres(),
+                    mGamesLibrary.get(i).getPlatform(),
                     mGamesLibrary.get(i).getRating(),
-                    mGamesLibrary.get(i).getReleaseDate()
+                    mGamesLibrary.get(i).getReleaseDate(),
+                    mGamesLibrary.get(i).getVideos()
             );
-            if (mGames != null) {
-                mGames.add(game);
-            }
+            mGames.add(game);
         }
     }
 }
