@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText(R.string.popular_games));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.my_library));
+        tabLayout.addTab(tabLayout.newTab().setText("Best Game Ever"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //Initializing viewPager
