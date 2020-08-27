@@ -113,15 +113,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:text="@string/genre_details"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"/>
 
             <TextView
                 android:id="@+id/genre_details"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
-                tools:text="Shooter, RPG, etc." />
+                android:paddingRight="4dp"
+                tools:text="Shooter, RPG, etc."
+                android:paddingStart="4dp" />
 
         </LinearLayout>
 
@@ -136,6 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:text="@string/platforms_details"
                 android:textStyle="bold" />
 
@@ -144,6 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 tools:text="PS4, Switch, XBOX1, PC" />
 
         </LinearLayout>
@@ -159,6 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:text="@string/synopsis_details"
                 android:textStyle="bold" />
 
@@ -180,6 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:text="@string/trailer_details"
                 android:textStyle="bold" />
 

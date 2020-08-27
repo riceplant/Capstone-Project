@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.riceplant.capstoneproject.fragments.BestGameFragment;
 import com.riceplant.capstoneproject.fragments.MyLibraryFragment;
 import com.riceplant.capstoneproject.fragments.PopularGamesFragment;
 
@@ -30,6 +31,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 MyLibraryFragment tab2 = new MyLibraryFragment();
                 return tab2;
+            case 2:
+                BestGameFragment tab3 = new BestGameFragment();
+                return tab3;
             default:
                 return null;
         }

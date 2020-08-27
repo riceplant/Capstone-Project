@@ -18,12 +18,12 @@
             android:id="@+id/game_name_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|top"
+            android:layout_gravity="start|top"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@android:color/darker_gray"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
